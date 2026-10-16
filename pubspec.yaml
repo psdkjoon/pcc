@@ -1,0 +1,9 @@
+name: pcc
+description: A colorful terminal clock that scales to any terminal size.
+version: 1.0.0
+
+environment:
+  sdk: ^3.0.0
+
+executables:
+  pcc:
