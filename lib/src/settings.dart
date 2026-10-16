@@ -20,6 +20,7 @@ class Settings {
     required this.help,
     required this.list,
     required this.install,
+    required this.uninstall,
     required this.completion,
   });
 
@@ -36,6 +37,7 @@ class Settings {
   final bool help;
   final bool list;
   final bool install;
+  final bool uninstall;
   final String? completion;
 }
 
@@ -63,6 +65,7 @@ Settings parseArgs(List<String> args) {
   bool help = false;
   bool list = false;
   bool install = false;
+  bool uninstall = false;
   String? completion;
 
   int i = 0;
@@ -149,6 +152,8 @@ Settings parseArgs(List<String> args) {
         pixel = foundPixel;
       case '--install':
         install = true;
+      case '--uninstall':
+        uninstall = true;
       case '--completion':
         final String shellName = value().toLowerCase();
         if (shellName != 'bash' && shellName != 'zsh') {
@@ -175,6 +180,7 @@ Settings parseArgs(List<String> args) {
     help: help,
     list: list,
     install: install,
+    uninstall: uninstall,
     completion: completion,
   );
 }

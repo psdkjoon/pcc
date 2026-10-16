@@ -24,6 +24,7 @@ Options:
   -B, --bg                  Paint the theme background color
   -l, --list                List colors, themes, fonts and styles
       --install             Install pcc and its shell completions for you
+      --uninstall           Uninstall pcc and remove shell completions
       --completion <shell>  Print a completion script (bash or zsh)
   -h, --help                Show this help
 
@@ -38,9 +39,9 @@ Press q or Ctrl+C to quit.''';
 void watchSignal(ProcessSignal signal, void Function() action) {
   try {
     signal.watch().listen(
-      (ProcessSignal _) => action(),
-      onError: (Object _) {},
-    );
+          (ProcessSignal _) => action(),
+          onError: (Object _) {},
+        );
   } on SignalException {
     stdout.write('');
   }
@@ -74,6 +75,10 @@ Future<void> main(List<String> args) async {
 
   if (settings.install) {
     exit(runInstall());
+  }
+
+  if (settings.uninstall) {
+    exit(runUninstall());
   }
 
   if (!stdout.hasTerminal) {
